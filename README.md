@@ -1,6 +1,14 @@
-# 🎯 Object Detection Using TensorFlow/OpenCV
+# 🎯 Object Detection using OpenCV DNN
 
 A real-time object detection system that identifies and classifies objects (people, vehicles, animals, and everyday items) in images and live video streams, using a pre-trained **MobileNet-SSD** deep learning model through OpenCV's DNN module.
+
+## Demo
+
+Results from the web dashboard:
+
+![Car detection](car.jpg)
+![Chair detection](chair.jpg)
+![Bottle detection](bottle.jpg)
 
 ## Features
 
@@ -23,12 +31,23 @@ This project uses a pre-trained model that isn't included in the repo (model wei
 1. **`MobileNetSSD_deploy.prototxt`** (the model architecture)
 2. **`MobileNetSSD_deploy.caffemodel`** (the trained weights, ~23MB)
 
-You can get both from this widely-used public repository:
-👉 https://github.com/chuanqi305/MobileNet-SSD
+From the project folder, run:
 
-Download both files and place them exactly here:
+```bash
+mkdir models
+curl -L -o models/MobileNetSSD_deploy.prototxt https://raw.githubusercontent.com/djmv/MobilNet_SSD_opencv/master/MobileNetSSD_deploy.prototxt
+curl -L -o models/MobileNetSSD_deploy.caffemodel https://raw.githubusercontent.com/djmv/MobilNet_SSD_opencv/master/MobileNetSSD_deploy.caffemodel
 ```
-object-detection/
+
+The folder should look like this:
+
+```
+Real-Time-Object-Detection-OpenCV-Deep-Learning/
+├── app.py
+├── webcam_detect.py
+├── requirements.txt
+├── templates/
+│   └── index.html
 └── models/
     ├── MobileNetSSD_deploy.prototxt
     └── MobileNetSSD_deploy.caffemodel
@@ -44,29 +63,31 @@ object-detection/
 ## Setup & Installation
 
 1. Clone this repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/object-detection.git
-   cd object-detection
-   ```
+```bash
+   git clone https://github.com/surjyasaha/Real-Time-Object-Detection-OpenCV-Deep-Learning.git
+   cd Real-Time-Object-Detection-OpenCV-Deep-Learning
+```
 
 2. Install dependencies:
-   ```bash
+```bash
    pip install -r requirements.txt
-   ```
+```
 
 3. Download the model files (see instructions above) into the `models/` folder.
 
 4. **For the web dashboard:**
-   ```bash
+```bash
    python app.py
-   ```
+```
    Then open `http://127.0.0.1:5000` and upload an image.
 
 5. **For real-time webcam detection:**
-   ```bash
+```bash
    python webcam_detect.py
-   ```
+```
    Press `q` to quit the webcam window.
+
+> On Windows, if `python` isn't recognised, use `py` instead (for example `py app.py`).
 
 ## Future Improvements
 
@@ -79,4 +100,4 @@ object-detection/
 
 **Surjya Kanta Saha**
 B.Tech, Electronics and Communication Engineering
-[LinkedIn](https://linkedin.com/in/surjya-kanta-saha) | surjyasaaha@gmail.com
+[LinkedIn]([https://linkedin.com/in/surjya-kanta-saha](https://www.linkedin.com/in/surjya-kanta-saha-332071254/?isSelfProfile=true)) | surjyasaaha@gmail.com
