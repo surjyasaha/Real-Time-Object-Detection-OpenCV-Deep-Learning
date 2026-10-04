@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Real-Time Object Detection</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f1f3f8; margin: 0; color: #14213d; }
+    .wrap { max-width: 820px; margin: 40px auto; background: #fff; padding: 28px 32px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    h1 { margin-top: 0; }
+    p.sub { color: #555; }
+    form { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 20px 0; }
+    button { background: #e63946; color: #fff; border: 0; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    .error { background: #fdecea; color: #b3261e; padding: 12px; border-radius: 6px; }
+    img { max-width: 100%; border-radius: 8px; margin-top: 12px; }
+    .tag { display: inline-block; background: #e6f4ea; color: #1e6b3a; padding: 4px 10px; border-radius: 14px; margin: 4px 6px 0 0; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Real-Time Object Detection</h1>
+    <p class="sub">Upload an image and the MobileNet-SSD model (via OpenCV DNN) will detect objects and draw labelled boxes.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" accept="image/*" required>
+      <button type="submit">Detect objects</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if result_image %}
+      <h3>Result</h3>
+      {% if detected %}
+        <div>
+          {% for obj in detected %}<span class="tag">{{ obj }}</span>{% endfor %}
+        </div>
+      {% else %}
+        <p>No objects detected above the confidence threshold.</p>
+      {% endif %}
+      <img src="{{ url_for('static', filename='uploads/output.jpg') }}?t={{ range(1, 1000000) | random }}" alt="Detection result">
+    {% endif %}
+  </div>
+</body>
+</html>
