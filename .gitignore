@@ -1,0 +1,3 @@
+   static/uploads/
+   models/*.caffemodel
+   __pycache__/
